@@ -67,4 +67,22 @@ Candidato preenche formulario
 
 ## Configuracao
 
-Substitua `YOUR_API_URL` no codigo pelo endpoint da sua API.
+Substitua os placeholders no codigo pelos valores do seu ambiente:
+
+| Placeholder | Onde | O que e |
+|---|---|---|
+| `YOUR_API_URL` | `admin.html` | Endpoint base da API REST |
+| `YOUR_N8N_WEBHOOK_URL` | `index.html` | Webhook do workflow n8n |
+| `YOUR_SENHA_SALT` | `admin.html` | Salt para hash de senha |
+
+---
+
+## Nota sobre seguranca
+
+Esta e a **versao demo** publicada para portfolio. Credenciais, endpoints e
+o salt foram substituidos por placeholders.
+
+Na versao demo a autenticacao do admin e resolvida no client-side para
+simplicidade de demonstracao. **Em producao**, a validacao de credenciais,
+o controle de acesso e a triagem de curriculos rodam no backend (VPS + n8n),
+nunca no navegador — o frontend apenas consome a API ja autenticada.
