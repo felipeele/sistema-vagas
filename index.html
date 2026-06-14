@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub dos Restaurantes — Trabalhe Conosco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-size-body: 15px;
+      --font-size-label: 13px;
+      --font-size-input: 15px;
+      --font-size-header: 28px;
+      --font-size-subheader: 16px;
+      --hub-purple-900: #4c1d95;
+      --hub-purple-700: #6d28d9;
+      --hub-purple-600: #7c3aed;
+      --hub-purple-500: #8b5cf6;
+      --hub-purple-400: #a78bfa;
+      --hub-purple-300: #c4b5fd;
+      --hub-purple-200: #ddd6fe;
+      --hub-purple-100: #ede9fe;
+      --hub-purple-50: #f5f3ff;
+      --color-background: #f8f6ff;
+      --color-card-bg: #ffffff;
+      --color-card-border: var(--hub-purple-200);
+      --color-header: #1a0a3e;
+      --color-subtext: #6b7280;
+      --color-label: var(--hub-purple-900);
+      --color-input-text: #111827;
+      --color-placeholder: #9ca3af;
+      --color-input-bg: #faf9ff;
+      --color-input-border: var(--hub-purple-300);
+      --color-focus-border: var(--hub-purple-600);
+      --color-focus-ring: rgba(124, 58, 237, 0.18);
+      --color-submit-btn-text: #ffffff;
+      --color-card-shadow: rgba(124, 58, 237, 0.12);
+      --shadow-card: 0 8px 40px var(--color-card-shadow), 0 1px 3px rgba(0,0,0,0.04);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-body);
+      color: var(--color-input-text);
+      background: var(--color-background);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 520px;
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-card-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      padding: 44px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--hub-purple-600), var(--hub-purple-400), var(--hub-purple-600));
+      background-size: 200% 100%;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .form-header { text-align: center; margin-bottom: 32px; }
+
+    .logo-container {
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .logo-container img {
+      height: auto; width: 100%; max-width: 320px; object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container img:hover { transform: scale(1.03); }
+
+    .form-header h1 {
+      font-family: var(--font-display);
+      font-size: var(--font-size-header);
+      font-weight: 800;
+      color: var(--color-header);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      font-size: var(--font-size-subheader);
+      color: var(--color-subtext);
+      line-height: 1.5;
+    }
+
+    .form-header .highlight { color: var(--hub-purple-600); font-weight: 600; }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--hub-purple-200), transparent);
+      margin-bottom: 28px;
+    }
+
+    .form-group { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: var(--font-size-label);
+      font-weight: 600;
+      color: var(--color-label);
+      margin-bottom: 6px;
+    }
+
+    label .required { color: var(--hub-purple-400); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: var(--font-size-input);
+      color: var(--color-input-text);
+      background: var(--color-input-bg);
+      border: 1.5px solid var(--color-input-border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input::placeholder { color: var(--color-placeholder); }
+    input:hover { border-color: var(--hub-purple-400); }
+
+    input:focus {
+      border-color: var(--color-focus-border);
+      box-shadow: 0 0 0 4px var(--color-focus-ring);
+      background: #fff;
+    }
+
+    /* SELECT */
+    select {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: var(--font-size-input);
+      color: var(--color-input-text);
+      background: var(--color-input-bg);
+      border: 1.5px solid var(--color-input-border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      outline: none;
+      transition: all 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 42px;
+      cursor: pointer;
+    }
+
+    select:hover { border-color: var(--hub-purple-400); }
+
+    select:focus {
+      border-color: var(--color-focus-border);
+      box-shadow: 0 0 0 4px var(--color-focus-ring);
+      background-color: #fff;
+    }
+
+    /* RADIO GROUP */
+    .radio-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--color-input-bg);
+      border: 1.5px solid var(--color-input-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .radio-option:hover {
+      border-color: var(--hub-purple-400);
+      background: var(--hub-purple-50);
+    }
+
+    .radio-option.selected {
+      border-color: var(--hub-purple-600);
+      background: var(--hub-purple-100);
+      box-shadow: 0 0 0 3px var(--color-focus-ring);
+    }
+
+    .radio-option input[type="radio"] {
+      accent-color: var(--hub-purple-600);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .radio-option span {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-label);
+    }
+
+    /* FILE UPLOAD */
+    .file-upload-area {
+      position: relative;
+      border: 2px dashed var(--hub-purple-300);
+      border-radius: var(--radius-md);
+      padding: 28px 20px;
+      text-align: center;
+      background: var(--hub-purple-50);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .file-upload-area:hover {
+      border-color: var(--hub-purple-600);
+      background: var(--hub-purple-100);
+    }
+
+    .file-upload-area.dragover {
+      border-color: var(--hub-purple-600);
+      background: var(--hub-purple-100);
+      transform: scale(1.01);
+    }
+
+    .file-upload-area.has-file {
+      border-style: solid;
+      border-color: var(--hub-purple-400);
+      background: #fff;
+    }
+
+    .file-upload-area input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer;
+    }
+
+    .upload-icon {
+      width: 40px; height: 40px;
+      margin: 0 auto 12px;
+      background: var(--hub-purple-100);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .upload-icon svg { width: 20px; height: 20px; color: var(--hub-purple-600); }
+
+    .upload-text {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      color: var(--hub-purple-700);
+      margin-bottom: 4px;
+    }
+
+    .upload-hint { font-size: 12px; color: var(--color-subtext); }
+
+    .file-info {
+      display: none;
+      align-items: center; gap: 12px; justify-content: center;
+    }
+
+    .file-info.visible { display: flex; }
+
+    .file-info .file-name {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      color: var(--hub-purple-700);
+      max-width: 260px; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .file-info .file-size { font-size: 12px; color: var(--color-subtext); }
+
+    .file-info .remove-file {
+      background: none; border: none; cursor: pointer;
+      color: var(--color-subtext); padding: 4px;
+      border-radius: 50%; transition: all 0.2s ease;
+      display: flex; align-items: center;
+    }
+
+    .file-info .remove-file:hover { color: #ef4444; background: #fef2f2; }
+    .upload-default.hidden { display: none; }
+
+    /* BUTTON */
+    .btn-submit {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%;
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700;
+      color: var(--color-submit-btn-text);
+      background: linear-gradient(135deg, var(--hub-purple-600), var(--hub-purple-700));
+      border: none; border-radius: var(--radius-md);
+      padding: 15px 24px; cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(124,58,237,0.3);
+      position: relative; overflow: hidden; margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(124,58,237,0.4);
+      background: linear-gradient(135deg, var(--hub-purple-700), var(--hub-purple-900));
+    }
+
+    .btn-submit:active { transform: translateY(0); }
+
+    .btn-submit:disabled {
+      opacity: 0.6; cursor: not-allowed; transform: none !important;
+    }
+
+    .btn-submit svg {
+      width: 18px; height: 18px; transition: transform 0.25s ease;
+    }
+
+    .btn-submit:hover svg { transform: translateX(3px); }
+
+    .spinner {
+      display: none;
+      width: 20px; height: 20px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .btn-submit.loading .btn-text,
+    .btn-submit.loading .btn-arrow { display: none; }
+    .btn-submit.loading .spinner { display: block; }
+
+    .error-toast {
+      display: none;
+      background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: var(--radius-sm);
+      padding: 12px 16px; margin-top: 12px;
+      font-size: 13px; color: #991b1b;
+      text-align: center; animation: fadeUp 0.3s ease-out;
+    }
+
+    .error-toast.visible { display: block; }
+
+    .success-message {
+      display: none; text-align: center;
+      padding: 40px 20px; animation: fadeUp 0.5s ease-out both;
+    }
+
+    .success-message .check-circle {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--hub-purple-100), var(--hub-purple-50));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-message .check-circle svg { width: 32px; height: 32px; color: var(--hub-purple-600); }
+
+    .success-message h2 {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 700;
+      color: var(--color-header); margin-bottom: 8px;
+    }
+
+    .success-message p { color: var(--color-subtext); font-size: 15px; line-height: 1.5; }
+
+    .form-footer {
+      text-align: center; margin-top: 24px;
+      font-size: 12px; color: var(--color-subtext);
+    }
+
+    .form-footer .secure-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-weight: 500; color: var(--hub-purple-600);
+    }
+
+    .form-footer .secure-badge svg { width: 14px; height: 14px; }
+
+    @media (max-width: 560px) {
+      .form-card { padding: 32px 24px 28px; border-radius: var(--radius-lg); }
+      .form-header h1 { font-size: 22px; }
+      .logo-container img { max-width: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <div class="form-card">
+
+      <div class="form-header">
+        <div class="logo-container">
+          <img src="https://hubdosrestaurantes.com.br/wp-content/uploads/2025/03/LogotipoVetorCompleto.png" alt="Hub dos Restaurantes" />
+        </div>
+        <h1>Trabalhe Conosco</h1>
+        <p>Faça parte do time que transforma a <span class="highlight">gestão de restaurantes</span> no Brasil.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <form id="contactForm" novalidate>
+        <div class="form-group">
+          <label for="nome">Nome completo <span class="required">*</span></label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="vaga">Vagas em aberto <span class="required">*</span></label>
+          <select id="vaga" name="vaga">
+            <option value="" disabled selected>Carregando vagas...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="banco">Banco de currículo</label>
+          <select id="banco" name="banco">
+            <option value="" disabled selected>Carregando áreas...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tem facilidade de acesso à região da Lapa/SP? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option" id="radioSim">
+              <input type="radio" name="acesso_lapa" value="Sim" required />
+              <span>Sim</span>
+            </label>
+            <label class="radio-option" id="radioNao">
+              <input type="radio" name="acesso_lapa" value="Não" />
+              <span>Não</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Currículo <span class="required">*</span></label>
+          <div class="file-upload-area" id="uploadArea">
+            <input type="file" id="curriculo" name="curriculo" accept=".pdf,.doc,.docx" required />
+            <div class="upload-default" id="uploadDefault">
+              <div class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <div class="upload-text">Clique ou arraste seu currículo aqui</div>
+              <div class="upload-hint">PDF, DOC ou DOCX · Máximo 5MB</div>
+            </div>
+            <div class="file-info" id="fileInfo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hub-purple-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+              <div>
+                <div class="file-name" id="fileName"></div>
+                <div class="file-size" id="fileSize"></div>
+              </div>
+              <button type="button" class="remove-file" id="removeFile" title="Remover arquivo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span class="btn-text">Enviar Candidatura</span>
+          <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+          <div class="spinner"></div>
+        </button>
+
+        <div class="error-toast" id="errorToast"></div>
+      </form>
+
+      <div class="success-message" id="successMsg">
+        <div class="check-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2>Candidatura enviada!</h2>
+        <p>Recebemos seu currículo. Nossa equipe analisará e entrará em contato em breve. Obrigado!</p>
+      </div>
+
+      <div class="form-footer">
+        <span class="secure-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Seus dados estão seguros
+        </span>
+        · Hub dos Restaurantes © 2025
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // ┌─────────────────────────────────────────────────────────┐
+    // │  ⚙️  CONFIGURAÇÃO — Cole a URL do seu webhook n8n aqui  │
+    // └─────────────────────────────────────────────────────────┘
+    const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL';
+    // Exemplo: 'https://n8n.meudominio.com/webhook/abc123-def456'
+
+    // Fonte dinâmica de vagas + áreas do banco de currículo (editada pelo Vagas-Admin.html)
+    const VAGAS_DATA_URL = '/vagas/vagas-data.json';
+
+    // Carrega vagas em aberto e banco de currículo dinamicamente
+    (async function carregarListas() {
+      const selVaga = document.getElementById('vaga');
+      const selBanco = document.getElementById('banco');
+      try {
+        const res = await fetch(VAGAS_DATA_URL + '?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('http ' + res.status);
+        const data = await res.json();
+
+        selVaga.innerHTML = '<option value="" disabled selected>Selecione uma vaga</option>';
+        (data.vagas || []).forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v.titulo;
+          opt.textContent = v.descricao ? `${v.titulo} — ${v.descricao}` : v.titulo;
+          selVaga.appendChild(opt);
+        });
+
+        selBanco.innerHTML = '<option value="" disabled selected>Selecione uma área</option>';
+        (data.banco_curriculos || []).forEach(area => {
+          const opt = document.createElement('option');
+          opt.value = area;
+          opt.textContent = area;
+          selBanco.appendChild(opt);
+        });
+      } catch (err) {
+        console.error('Falha ao carregar vagas:', err);
+        selVaga.innerHTML = '<option value="" disabled selected>Erro ao carregar vagas</option>';
+        selBanco.innerHTML = '<option value="" disabled selected>Erro ao carregar áreas</option>';
+      }
+    })();
+
+
+    // === Máscara de telefone ===
+    const phoneInput = document.getElementById('whatsapp');
+    phoneInput.addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      if (v.length > 6) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      else if (v.length > 0) v = '(' + v;
+      e.target.value = v;
+    });
+
+    // === Upload de arquivo ===
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('curriculo');
+    const uploadDefault = document.getElementById('uploadDefault');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileNameEl = document.getElementById('fileName');
+    const fileSizeEl = document.getElementById('fileSize');
+    const removeBtn = document.getElementById('removeFile');
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    function showFile(file) {
+      fileNameEl.textContent = file.name;
+      fileSizeEl.textContent = formatSize(file.size);
+      uploadDefault.classList.add('hidden');
+      fileInfo.classList.add('visible');
+      uploadArea.classList.add('has-file');
+    }
+
+    function clearFile() {
+      fileInput.value = '';
+      uploadDefault.classList.remove('hidden');
+      fileInfo.classList.remove('visible');
+      uploadArea.classList.remove('has-file');
+    }
+
+    fileInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        const file = this.files[0];
+        if (file.size > 5 * 1024 * 1024) {
+          showError('O arquivo deve ter no máximo 5MB.');
+          this.value = '';
+          return;
+        }
+        showFile(file);
+      }
+    });
+
+    removeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      clearFile();
+    });
+
+    ['dragenter', 'dragover'].forEach(evt => {
+      uploadArea.addEventListener(evt, e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+    });
+
+    ['dragleave', 'drop'].forEach(evt => {
+      uploadArea.addEventListener(evt, e => { e.preventDefault(); uploadArea.classList.remove('dragover'); });
+    });
+
+    uploadArea.addEventListener('drop', function(e) {
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        const file = files[0];
+        const allowed = [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ];
+        if (!allowed.includes(file.type)) {
+          showError('Formato não suportado. Envie PDF, DOC ou DOCX.');
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          showError('O arquivo deve ter no máximo 5MB.');
+          return;
+        }
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        fileInput.files = dt.files;
+        showFile(file);
+      }
+    });
+
+    // === Radio buttons interação visual ===
+    document.querySelectorAll('.radio-option input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
+        this.closest('.radio-option').classList.add('selected');
+      });
+    });
+
+    // === Toast de erro ===
+    const errorToast = document.getElementById('errorToast');
+    function showError(msg) {
+      errorToast.textContent = msg;
+      errorToast.classList.add('visible');
+      setTimeout(() => errorToast.classList.remove('visible'), 5000);
+    }
+
+    // === Envio via Webhook (FormData / multipart — Binary no n8n) ===
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      errorToast.classList.remove('visible');
+
+      const nome = document.getElementById('nome').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const vaga = document.getElementById('vaga').value;
+      const banco = document.getElementById('banco').value;
+      const acessoLapa = document.querySelector('input[name="acesso_lapa"]:checked');
+      const file = fileInput.files[0];
+
+      if (!nome || !whatsapp || !email) {
+        showError('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
+      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        showError('Por favor, insira um e-mail válido.');
+        return;
+      }
+      if (!vaga && !banco) {
+        showError('Por favor, selecione uma vaga em aberto ou uma área no banco de currículo.');
+        return;
+      }
+      if (!acessoLapa) {
+        showError('Por favor, responda sobre o acesso à região da Lapa/SP.');
+        return;
+      }
+      if (!file) {
+        showError('Por favor, anexe seu currículo.');
+        return;
+      }
+
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('whatsapp', whatsapp);
+        formData.append('email', email);
+        formData.append('vaga_em_aberto', vaga || '');
+        formData.append('banco_de_curriculo', banco || '');
+        formData.append('acesso_lapa', acessoLapa.value);
+        formData.append('data_envio', new Date().toISOString());
+        formData.append('curriculo', file, file.name);
+
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData,
+        });
+
+        // Registra candidatura no banco de dados (fire-and-forget)
+        fetch('/vagas/registrar-candidatura.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome, email, whatsapp,
+            tipo: vaga ? 'vaga' : 'banco',
+            vaga: vaga || '',
+            banco_area: banco || '',
+          }),
+        }).catch(() => {});
+
+        form.style.display = 'none';
+        document.querySelector('.divider').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+
+      } catch (error) {
+        console.error('Webhook error:', error);
+        showError('Erro ao enviar. Tente novamente em alguns instantes.');
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
